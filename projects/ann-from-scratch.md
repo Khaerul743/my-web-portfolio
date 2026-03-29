@@ -1,101 +1,73 @@
-# Convolutional Neural Network From Scratch
+# Artificial Neural Network From Scratch
 
-Project ini adalah implementasi **Convolutional Neural Network (CNN) yang saya buat dari nol hanya menggunakan NumPy dan konsep matematika yang saya pelajari**.
+Project ini adalah implementasi **Artificial Neural Network (ANN) yang saya buat dari nol hanya menggunakan NumPy**. Tujuan utama saya membuat project ini adalah supaya saya dapat memahami **deep learning secara lebih mendalam, terutama dari sisi konsep dan dasar matematikanya**.
 
-Project ini merupakan lanjutan dari project sebelumnya di mana saya membuat **Artificial Neural Network (ANN) dari nol**. Setelah memahami bagaimana neural network dasar bekerja, saya mencoba mempelajari arsitektur deep learning yang lebih kompleks, khususnya untuk **memproses data berbentuk gambar**.
+Pada saat itu saya merasa cukup kesulitan memahami bagaimana sebenarnya sebuah model deep learning bekerja. Sebelumnya saya hanya menggunakan framework seperti TensorFlow atau PyTorch untuk membangun model. Memang framework tersebut sangat membantu karena membuat proses pengembangan model menjadi jauh lebih cepat dan efisien.
 
-Pada awalnya saya mencoba menggunakan pendekatan ANN biasa untuk mengklasifikasikan gambar. Namun saya menyadari bahwa pendekatan tersebut **tidak efisien secara komputasi**.
+Namun saya menyadari ada satu masalah yang cukup mengganggu bagi saya, yaitu saya **tidak benar-benar memahami apa yang terjadi di balik kode yang saya tulis**. Framework tersebut memberikan tingkat abstraksi yang sangat tinggi sehingga banyak proses penting yang tersembunyi di balik library.
 
-Hal ini terjadi karena sebuah gambar terdiri dari banyak pixel. Jika setiap pixel dijadikan input langsung ke dalam layer ANN, maka jumlah parameter yang harus diproses menjadi sangat besar.
-
-Karena itulah saya mulai mempelajari **Convolutional Neural Network (CNN)** yang memang dirancang khusus untuk memproses data berbentuk gambar secara lebih efisien.
+Karena itulah saya memutuskan untuk membuat **implementasi Artificial Neural Network dari nol**, sehingga saya bisa memahami secara langsung bagaimana proses forward propagation, backpropagation, serta proses update parameter bekerja secara matematis.
 
 ---
 
 ## Problem
 
-Ketika mencoba membangun model klasifikasi gambar menggunakan ANN biasa, saya menemukan beberapa masalah utama:
+Framework deep learning modern seperti TensorFlow dan PyTorch memang sangat powerful dan produktif. Namun bagi seseorang yang ingin benar-benar memahami konsep dasar deep learning, framework tersebut terkadang terasa terlalu abstrak.
 
-- jumlah parameter yang sangat besar
-- proses komputasi menjadi tidak efisien
-- model sulit mempelajari pola spasial dari gambar
+Beberapa kesulitan yang saya rasakan antara lain:
 
-Pendekatan ANN tidak memanfaatkan **struktur spasial dari gambar**, sehingga semua pixel diperlakukan sebagai input yang terpisah.
+- Tidak memahami secara jelas bagaimana proses **forward propagation** bekerja
+- Tidak benar-benar memahami bagaimana **gradien dihitung dalam backpropagation**
+- Tidak melihat secara langsung bagaimana **parameter model diperbarui**
 
-Hal ini membuat ANN kurang optimal untuk tugas yang berkaitan dengan **computer vision**.
+Hal ini membuat saya merasa bahwa saya hanya menggunakan library tanpa benar-benar memahami mekanismenya.
 
 ---
 
 ## Solution
 
-Untuk mengatasi masalah tersebut, saya mempelajari dan mengimplementasikan **Convolutional Neural Network (CNN)** dari nol menggunakan NumPy.
+Untuk mengatasi hal tersebut, saya membuat implementasi **Artificial Neural Network dari nol menggunakan NumPy**, sehingga semua proses komputasi dapat saya lihat dan pahami secara langsung.
 
-CNN menggunakan operasi **convolution** untuk mengekstraksi fitur dari gambar secara lebih efisien. Dengan menggunakan kernel atau filter kecil yang bergerak di seluruh gambar, CNN dapat menangkap pola-pola penting seperti:
+Dalam project ini saya mengimplementasikan beberapa komponen utama dari neural network, antara lain:
 
-- edge
-- texture
-- bentuk objek
+- Forward propagation
+- Backpropagation
+- Perhitungan gradient
+- Update parameter model
 
-Pendekatan ini jauh lebih efisien dibandingkan ANN karena jumlah parameter yang digunakan jauh lebih sedikit.
+Dengan pendekatan ini, saya bisa memahami bagaimana setiap bagian dari neural network bekerja secara matematis.
 
 ---
 
 ## Dataset
 
-Dalam project ini saya menggunakan **dataset MNIST**, tetapi hanya menggunakan subset sederhana yaitu **digit 0 dan digit 1**.
+Dalam project ini saya menggunakan dataset yang cukup sederhana, yaitu **XOR dataset**.
 
-Dataset ini dipilih karena:
+Walaupun dataset ini sederhana, XOR memiliki sifat **non-linear separable**, sehingga model linear biasa tidak dapat menyelesaikan masalah ini. Hal ini membuat dataset XOR menjadi contoh klasik untuk menunjukkan bagaimana **neural network mampu mempelajari pola non-linear**.
 
-- cukup sederhana untuk eksperimen awal CNN
-- tetap merepresentasikan data gambar nyata
-- dapat membantu memverifikasi bahwa model benar-benar mampu melakukan klasifikasi gambar
-
-Dengan dataset ini saya dapat menguji apakah CNN yang saya implementasikan benar-benar dapat mempelajari perbedaan pola antara dua digit tersebut.
+Dengan dataset ini saya dapat memastikan bahwa model neural network yang saya buat benar-benar belajar dan bekerja sesuai dengan konsep dasar deep learning.
 
 ---
 
-## CNN Architecture Concept
+## Model Design
 
-Salah satu konsep penting yang saya pelajari ketika mengimplementasikan CNN dari nol adalah bagaimana arsitektur deep learning biasanya dibagi menjadi dua bagian utama.
+Untuk menjaga struktur kode tetap rapi dan mudah dikembangkan, saya juga menerapkan pendekatan **Object Oriented Programming (OOP)** dalam implementasinya.
 
-### Body (Feature Extractor)
+Model neural network yang saya buat cukup fleksibel, sehingga kita dapat dengan mudah mengatur:
 
-Bagian ini bertugas untuk **mengekstraksi fitur dari data input**.
+- jumlah hidden layer
+- jumlah neuron pada setiap layer
+- konfigurasi model lainnya
 
-Dalam arsitektur CNN, bagian ini biasanya terdiri dari:
-
-- Convolutional layer
-- Activation function
-- Pooling layer
-
-Layer-layer tersebut bekerja bersama untuk menangkap berbagai pola dari gambar.
-
-### Head (Predictor)
-
-Bagian ini bertugas untuk **menghasilkan prediksi akhir dari fitur yang telah diekstraksi**.
-
-Dalam CNN, bagian ini biasanya berupa **fully connected layer** yang bertindak sebagai classifier.
-
-Konsep **body sebagai feature extractor dan head sebagai predictor** ternyata merupakan pola yang cukup umum dalam banyak arsitektur deep learning modern.
-
-Memahami konsep ini sangat membantu saya untuk memahami arsitektur model yang lebih kompleks di kemudian hari.
+Pendekatan ini memungkinkan model digunakan kembali untuk eksperimen dengan dataset lain.
 
 ---
 
-## Implementation
+## Optimization
 
-Dalam project ini saya mengimplementasikan beberapa komponen utama CNN secara manual, antara lain:
+Untuk proses update parameter model, saya menggunakan **Adam Optimizer**.
 
-- convolution operation
-- activation function
-- pooling layer
-- fully connected layer
-- forward propagation
-- backpropagation
-
-Untuk menjaga struktur kode tetap rapi dan mudah dikembangkan, saya juga menggunakan pendekatan **Object Oriented Programming (OOP)** seperti yang saya lakukan pada project neural network sebelumnya.
-
-Dengan pendekatan ini, setiap komponen model seperti layer, optimizer, dan proses training dapat dikelola secara lebih modular dan lebih mudah dipahami.
+Adam dipilih karena merupakan salah satu optimizer yang cukup populer dalam deep learning dan dapat membantu proses training menjadi lebih stabil serta konvergen lebih cepat dibandingkan metode gradient descent biasa.
 
 ---
 
@@ -106,14 +78,18 @@ Project ini dibangun menggunakan teknologi berikut:
 - Python
 - NumPy
 - Deep Learning fundamentals
-- Computer Vision concepts
+- Object Oriented Programming (OOP)
 
 ---
 
 ## Learning Outcome
 
-Melalui project ini saya mendapatkan pemahaman yang jauh lebih dalam mengenai bagaimana **model deep learning memproses data gambar**.
+Melalui project ini saya mendapatkan pemahaman yang jauh lebih baik mengenai **bagaimana neural network bekerja di balik layar**.
 
-Saya juga belajar bagaimana operasi convolution dapat membuat proses komputasi menjadi lebih efisien dibandingkan menggunakan neural network biasa.
+Saya belajar secara langsung bagaimana:
 
-Selain itu, saya juga memahami konsep penting dalam arsitektur deep learning, yaitu **pemisahan antara bagian feature extractor (body) dan predictor (head)**. Konsep ini sangat membantu saya dalam memahami berbagai arsitektur deep learning yang lebih kompleks.
+- forward propagation menghitung output model
+- backpropagation menghitung gradient
+- parameter model diperbarui melalui optimizer
+
+Project ini menjadi pengalaman yang sangat penting bagi saya karena membantu saya memahami bahwa framework seperti TensorFlow atau PyTorch sebenarnya hanyalah **abstraksi dari proses matematis yang lebih fundamental**.
