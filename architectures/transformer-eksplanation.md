@@ -60,10 +60,8 @@ Secara sederhana, positional encoding membantu model menjawab pertanyaan:
 
 Untuk matematikanya biasanya saya menggunakan sinus sebagai positional encoding setiap token dengan rumus:
 
-$$
-PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{\frac{2i}{d_{model}}}}\right), \quad
-PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{\frac{2i}{d_{model}}}}\right)
-$$
+$PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{\frac{2i}{d_{model}}}}\right)$  
+$PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{\frac{2i}{d_{model}}}}\right)$
 
 Dimana:
 - **pos** adalah posisi token dalam sequence (0, 1, 2, ...)
