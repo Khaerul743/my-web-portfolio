@@ -78,7 +78,7 @@ export default function Home() {
             <Github className="w-6 h-6" />
           </a>
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/khrllutfi24?igsh=dWswbHJtMW9xMzRh"
             target="_blank"
             rel="noopener noreferrer"
             className="text-neutral-400 hover:text-[#E4405F] transition-colors duration-300 hover:scale-110"

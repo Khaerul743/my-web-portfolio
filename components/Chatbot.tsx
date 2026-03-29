@@ -137,7 +137,7 @@ export default function Chatbot() {
               </div>
               <div>
                 <h3 className="font-bold text-sm">Portfolio Assistant</h3>
-                <p className="text-xs text-neutral-300">Ask me anything about the content here</p>
+                <p className="text-xs text-neutral-300">Ask me anything about me</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-neutral-400 hover:text-white transition-colors">
@@ -151,10 +151,10 @@ export default function Chatbot() {
               <div className="text-center text-neutral-500 text-sm mt-8 space-y-4">
                 <p>Hello! I'm an AI assistant trained on this portfolio.</p>
                 <div className="flex flex-col gap-2 mx-8">
-                  <button onClick={() => setInput("What is your web architecture?")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
+                  <button onClick={() => setInput("Kamu semester berapa?")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
                     "Kamu semester berapa?"
                   </button>
-                  <button onClick={() => setInput("Summarize this page.")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
+                  <button onClick={() => setInput("Kuliah dimana?")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
                     "Kuliah dimana?"
                   </button>
                 </div>
@@ -170,8 +170,8 @@ export default function Chatbot() {
                 )}
 
                 <div className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm shadow-sm ${msg.role === "user"
-                    ? "bg-neutral-900 text-white rounded-br-none"
-                    : "bg-white border border-neutral-200 text-neutral-800 rounded-bl-none prose prose-sm prose-p:leading-snug prose-a:text-blue-600 max-w-[85%]"
+                  ? "bg-neutral-900 text-white rounded-br-none"
+                  : "bg-white border border-neutral-200 text-neutral-800 rounded-bl-none prose prose-sm prose-p:leading-snug prose-a:text-blue-600 max-w-[85%]"
                   }`}>
                   {msg.role === "user" ? (
                     msg.content

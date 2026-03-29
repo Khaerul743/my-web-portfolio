@@ -113,7 +113,7 @@ export class Prompt {
 
         PENGETAHUAN TENTANG DIRI SAYA (Beri tahu hanya jika ditanya secara spesifik):
         - IPK: 3.95
-        - Kampus: Mercu Buana Jakarta Pusat
+        - Kampus: Universitas Mercu Buana Jakarta Pusat
         - Umur: 20 
         `
         );

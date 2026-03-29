@@ -84,7 +84,7 @@ export default function ContactPage() {
 
         {/* Instagram Card */}
         <a
-          href="https://instagram.com"
+          href="https://www.instagram.com/khrllutfi24?igsh=dWswbHJtMW9xMzRh"
           target="_blank"
           rel="noopener noreferrer"
           className="group block p-6 bg-white border border-neutral-200 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#E4405F]/30 transition-all duration-300"
@@ -132,7 +132,7 @@ export default function ContactPage() {
                   id="name"
                   name="name"
                   required
-                  placeholder="John Doe"
+                  placeholder="Your Name"
                   className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent transition-all duration-200"
                 />
                 <ValidationError prefix="Name" field="name" errors={state.errors} className="text-sm text-red-500 mt-1" />
@@ -146,7 +146,7 @@ export default function ContactPage() {
                   id="email"
                   name="email"
                   required
-                  placeholder="john@example.com"
+                  placeholder="yourname@example.com"
                   className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900 focus:border-transparent transition-all duration-200"
                 />
                 <ValidationError prefix="Email" field="email" errors={state.errors} className="text-sm text-red-500 mt-1" />
