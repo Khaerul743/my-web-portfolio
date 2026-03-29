@@ -1,6 +1,6 @@
 # About Me
 
-Hi, my name is **Khaerul Lutfi**. I am currently a **4th semester university student** who is deeply interested in the field of **Artificial Intelligence and Backend Engineering**.
+Hi, my name is **Khaerul Lutfi**. I am currently a **4th semester university student** information systems major who is deeply interested in the field of **Artificial Intelligence and Backend Engineering**.
 
 My interest in these two areas comes from the way they train me to think. Both AI and backend systems constantly challenge me to **solve problems, analyze complex situations, and design solutions in a structured and architectural way**. This mindset not only helps me when building software systems, but also influences how I approach problems in everyday life.
 
