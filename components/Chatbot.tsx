@@ -33,11 +33,11 @@ export default function Chatbot() {
 
     const userMessage = input.trim();
     setInput("");
-    
+
     // --- NEW RATE LIMIT / TOGGLE LOGIC ---
     const isEnabled = process.env.NEXT_PUBLIC_ENABLE_AI !== "false";
     const maxResponses = parseInt(process.env.NEXT_PUBLIC_MAX_RESPONSE || "5", 10);
-    
+
     if (!isEnabled) {
       setMessages((prev) => [...prev, { role: "user", content: userMessage }, { role: "ai", content: "maaf untuk sekarang agent sedang beristirahat:)" }]);
       return;
@@ -74,7 +74,7 @@ export default function Chatbot() {
     // Determine current page and topic
     const currentPage = pathname;
     const currentSlug = params?.slug as string | undefined;
-    
+
     // Topic logic: If there's a slug, use it. Otherwise, fallback to "about".
     // This handles /project/[slug], /notes/[slug], /architecture/[slug] vs / or /about or /contact
     const currentTopic = currentSlug || "about";
@@ -82,10 +82,10 @@ export default function Chatbot() {
     try {
       // Call the server action directly (backend invocation)
       const aiResponse = await runAgentAction(userMessage, currentPage, currentTopic);
-      
+
       // Simulate streaming the response character by character for improved UX
       await simulateStream(aiResponse);
-      
+
     } catch (error) {
       console.error("Chatbot Error:", error);
       setMessages((prev) => [...prev, { role: "ai", content: "Sorry, I encountered an error processing your request." }]);
@@ -96,7 +96,7 @@ export default function Chatbot() {
 
   const simulateStream = async (fullText: string) => {
     let currentText = "";
-    
+
     // Simulate streaming by adding a few characters at a time with a delay
     for (let i = 0; i < fullText.length; i += 3) {
       currentText += fullText.substring(i, i + 3);
@@ -105,7 +105,7 @@ export default function Chatbot() {
       const delay = /[.,!?]/.test(fullText[i]) ? 50 : 15;
       await new Promise(resolve => setTimeout(resolve, delay));
     }
-    
+
     // Finalize the message block
     setStreamingMessage("");
     setMessages((prev) => [...prev, { role: "ai", content: fullText }]);
@@ -117,9 +117,8 @@ export default function Chatbot() {
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 ${
-            isOpen ? "bg-neutral-800 text-white" : "bg-neutral-900 text-white hover:bg-neutral-800"
-          }`}
+          className={`p-4 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 ${isOpen ? "bg-neutral-800 text-white" : "bg-neutral-900 text-white hover:bg-neutral-800"
+            }`}
           aria-label="Toggle Chat"
         >
           {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
@@ -129,7 +128,7 @@ export default function Chatbot() {
       {/* Chat Window Popup */}
       {isOpen && (
         <div className="fixed bottom-24 right-6 w-[90vw] max-w-[400px] h-[600px] max-h-[80vh] bg-white border border-neutral-200 rounded-2xl shadow-2xl flex flex-col z-50 overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300">
-          
+
           {/* Header */}
           <div className="bg-neutral-900 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -153,15 +152,15 @@ export default function Chatbot() {
                 <p>Hello! I'm an AI assistant trained on this portfolio.</p>
                 <div className="flex flex-col gap-2 mx-8">
                   <button onClick={() => setInput("What is your web architecture?")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
-                    "What is your web architecture?"
+                    "Kamu semester berapa?"
                   </button>
                   <button onClick={() => setInput("Summarize this page.")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
-                    "Summarize this page."
+                    "Kuliah dimana?"
                   </button>
                 </div>
               </div>
             )}
-            
+
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} items-end gap-2`}>
                 {msg.role === "ai" && (
@@ -169,17 +168,16 @@ export default function Chatbot() {
                     <Bot className="w-4 h-4 text-neutral-700" />
                   </div>
                 )}
-                
-                <div className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm shadow-sm ${
-                  msg.role === "user" 
-                    ? "bg-neutral-900 text-white rounded-br-none" 
+
+                <div className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm shadow-sm ${msg.role === "user"
+                    ? "bg-neutral-900 text-white rounded-br-none"
                     : "bg-white border border-neutral-200 text-neutral-800 rounded-bl-none prose prose-sm prose-p:leading-snug prose-a:text-blue-600 max-w-[85%]"
-                }`}>
-                   {msg.role === "user" ? (
-                      msg.content
-                   ) : (
-                      <ReactMarkdown>{msg.content}</ReactMarkdown>
-                   )}
+                  }`}>
+                  {msg.role === "user" ? (
+                    msg.content
+                  ) : (
+                    <ReactMarkdown>{msg.content}</ReactMarkdown>
+                  )}
                 </div>
 
                 {msg.role === "user" && (
@@ -192,22 +190,22 @@ export default function Chatbot() {
 
             {/* Streaming UI showing partial message */}
             {isLoading && streamingMessage && (
-               <div className="flex justify-start items-end gap-2">
-                 <div className="bg-neutral-200 p-1.5 rounded-full shrink-0 mb-1">
-                    <Bot className="w-4 h-4 text-neutral-700" />
-                  </div>
-                  <div className="max-w-[85%] rounded-2xl px-4 py-2 text-sm shadow-sm bg-white border border-neutral-200 text-neutral-800 rounded-bl-none prose prose-sm prose-p:leading-snug prose-a:text-blue-600">
-                      <ReactMarkdown>{streamingMessage}</ReactMarkdown>
-                  </div>
-               </div>
+              <div className="flex justify-start items-end gap-2">
+                <div className="bg-neutral-200 p-1.5 rounded-full shrink-0 mb-1">
+                  <Bot className="w-4 h-4 text-neutral-700" />
+                </div>
+                <div className="max-w-[85%] rounded-2xl px-4 py-2 text-sm shadow-sm bg-white border border-neutral-200 text-neutral-800 rounded-bl-none prose prose-sm prose-p:leading-snug prose-a:text-blue-600">
+                  <ReactMarkdown>{streamingMessage}</ReactMarkdown>
+                </div>
+              </div>
             )}
 
             {/* Loading Indicator when awaiting backend response (before stream begins) */}
             {isLoading && !streamingMessage && (
-               <div className="flex justify-start items-center gap-2 text-neutral-500 text-xs ml-8">
-                 <Loader2 className="w-4 h-4 animate-spin" />
-                 <span>Thinking...</span>
-               </div>
+              <div className="flex justify-start items-center gap-2 text-neutral-500 text-xs ml-8">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Thinking...</span>
+              </div>
             )}
 
             <div ref={messagesEndRef} />
