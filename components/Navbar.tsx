@@ -30,15 +30,15 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${isScrolled
-          ? "bg-white/80 backdrop-blur-md border-b border-neutral-200 shadow-sm"
-          : "bg-white"
+        ? "bg-white/80 backdrop-blur-md border-b border-neutral-200 shadow-sm"
+        : "bg-white"
         }`}
     >
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="shrink-0 font-bold text-xl tracking-tight text-neutral-900">
-            <Link href="/">Khearul Lutfi</Link>
+            <Link href="/">Khaerul Lutfi</Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -55,8 +55,8 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${isActive
-                      ? "bg-neutral-100 text-neutral-900"
-                      : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50"
+                    ? "bg-neutral-100 text-neutral-900"
+                    : "text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50"
                     }`}
                 >
                   {item.name}
