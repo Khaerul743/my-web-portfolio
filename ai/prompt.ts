@@ -109,7 +109,7 @@ export class Prompt {
 
         KONTAK:
         - LinkedIn: https://linkedin.com/in/khaerul-lutfi-49b0a035b 
-        - Instagram: https://instagram.com/khaerul
+        - Instagram: https://www.instagram.com/khrllutfi24?igsh=dWswbHJtMW9xMzRh
 
         PENGETAHUAN TENTANG DIRI SAYA (Beri tahu hanya jika ditanya secara spesifik):
         - IPK: 3.95

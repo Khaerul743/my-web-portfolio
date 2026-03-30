@@ -3,9 +3,22 @@
 import { Github, Instagram, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      const scrollTimer = setTimeout(() => {
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: "smooth"
+        });
+      }, 500);
+      return () => clearTimeout(scrollTimer);
+    }
+  }, []);
+
   return (
     <div className="flex flex-col-reverse md:flex-row items-center justify-center min-h-[calc(100vh-80px)] px-6 max-w-6xl mx-auto gap-12 animate-in fade-in duration-1000 slide-in-from-bottom-4">
 

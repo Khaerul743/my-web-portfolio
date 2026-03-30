@@ -92,10 +92,7 @@ Setiap token akan diubah menjadi Q, K, dan V melalui proses linear transformatio
 
 Kemudian dilakukan perhitungan:
 
-$$
-\text{Attention}(Q, K, V) = 
-\text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V
-$$
+$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right) V$
 
 Dari rumus tersebut, model akan menghitung seberapa besar perhatian (attention) suatu token terhadap token lainnya.
 

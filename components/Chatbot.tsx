@@ -137,7 +137,7 @@ export default function Chatbot() {
               </div>
               <div>
                 <h3 className="font-bold text-sm">Portfolio Assistant</h3>
-                <p className="text-xs text-neutral-300">Ask me anything about me</p>
+                <p className="text-xs text-neutral-300">Ask anything about me</p>
               </div>
             </div>
             <button onClick={() => setIsOpen(false)} className="text-neutral-400 hover:text-white transition-colors">
@@ -156,6 +156,9 @@ export default function Chatbot() {
                   </button>
                   <button onClick={() => setInput("Kuliah dimana?")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
                     "Kuliah dimana?"
+                  </button>
+                  <button onClick={() => setInput("IPK lu berapa?")} className="bg-white border text-left px-3 py-2 rounded border-neutral-200 hover:border-neutral-900 transition-colors text-xs">
+                    "IPK lu berapa?"
                   </button>
                 </div>
               </div>
